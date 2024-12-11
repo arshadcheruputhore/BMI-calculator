@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- google-ubuntu-font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- google-symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:title" content="BMI CALCULATOR" />
+        <meta property="og:description" content="Calculate your Body Mass Index (BMI) easily with our simple tool. Input your weight and height to find out if you're underweight, normal, overweight, or obese." />
+        <meta property="og:image" content="https://i.postimg.cc/Y0QrWkhc/Screenshot-from-2024-12-11-11-28-02.png" />
+        <meta property="og:url" content="https://example.com" />
+        <meta property="og:type" content="Calculator" />
+        <meta property="og:site_name" content="BMI-Calculator" />
+
+    <link rel="stylesheet" href="../dist/output.css">
+    <title>BMI calculator</title>
+</head>
+<body>
+    <section class="w-screen h-screen flex justify-center items-center">
+        <div class="w-11/12 max-w-[600px] h-auto flex flex-col gap-2 justify-center items-center">
+            <div class="sm:text-4xl text-3xl uppercase font-bold text-slate-600"><h1>bmi calculator</h1></div>
+            <div class="w-full h-auto bg-[#f3f6ff] p-3 rounded-lg transform scale-95">
+                <div class="w-full flex bg-white p-1.5 rounded-3xl gap-1">
+                    <div class="w-1/2 text-lg font-semibold bg-[#7165e1] p-1.5 text-white rounded-2xl flex items-center gap-1 justify-center cursor-default" id="maleDiv">
+                        <span class="material-symbols-outlined">male</span>Male
+                    </div>
+                    <div class="w-1/2 text-lg font-semibold text-center p-1.5 rounded-2xl flex items-center gap-1 justify-center cursor-pointer" id="femaleDiv">
+                        <span class="material-symbols-outlined">female</span>Female
+                    </div>
+                </div>
+
+                <div class="sm:w-4/5 w-full sm:h-64 h-52 mx-auto mt-5 bg-[url('../images/men.png')] bg-contain bg-center bg-no-repeat" id="maleFemale">
+                    <!-- <img class="w-full h-full object-contain" src="../images/men.png" alt=""> -->
+                </div>
+
+
+                <div class="w-full bg-white mx-auto sm:p-5 p-4 rounded-2xl flex flex-col gap-3">
+                    <div class="w-full flex justify-between items-start gap-2 sm:gap-0">
+                        <div class="sm:w-1/3 w-1/2 flex sm:gap-3 gap-2 items-center">
+                            <span class="bg-[#0000ffa9] text-white p-2 rounded-2xl"><i class="fa-solid fa-weight-scale sm:text-3xl text-xl"></i></span>
+                            <label for="weight" class="text-xl font-medium">Weight</label>
+                        </div>
+
+                        <div class="sm:w-1/4 w-2/5 relative flex flex-col">
+                            <input type="number" name="" id="weight" class="w-full outline-none bg-none py-2 px-4  border-[#7165e1ce] border-2 rounded-3xl caret-[#0000ffa9] placeholder:text-sm" placeholder="Weight" oninput="ValidateWeight(this)" min="0">
+                            <span class="text-slate-500 absolute text-sm font-semibold right-2 top-3">kg</span>
+
+                            <span class="text-orange-500 sm:text-xs text-[10px] text-center opacity-0" id="maxWgt">Enter Valid Weight <br> between 11 - 300</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-between items-start">
+                        <div class="sm:w-1/3 w-1/2 flex sm:gap-3 gap-2 items-center">
+                            <span class="bg-[#0000ffa9] text-white p-2 rounded-2xl"><span class="material-symbols-outlined sm:text-3xl text-xl">height</span></span>
+                            <label for="height" class="text-xl font-medium">Height</label>
+                        </div>
+
+                        <div class="sm:w-1/4 w-2/5 relative flex flex-col">
+                            <input type="number" name="" id="height" class="w-full outline-none bg-none py-2 px-4  border-[#7165e1ce] border-2 rounded-3xl caret-[#0000ffa9] placeholder:text-sm" placeholder="Height" oninput="ValidateHeight(this)" min="0">
+                            <span class="text-slate-500 absolute text-sm font-semibold right-2 top-3">cm</span>
+
+                            <div class="w-full text-orange-500 sm:text-xs text-[10px] text-center opacity-0" id="maxHgt">Enter Valid Height <br> between 101 - 250</div>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-between items-start">
+                        <div class="sm:w-1/3 w-1/2 flex sm:gap-3 gap-2 items-center">
+                            <span class="bg-[#0000ffa9] text-white p-2 rounded-2xl"><span class="material-symbols-outlined sm:text-3xl text-xl">
+                                for_you
+                                </span></span>
+                            <label for="age" class="text-xl font-medium">Age</label>
+                        </div>
+
+                        <div class="sm:w-1/4 w-2/5 relative flex flex-col">
+                            <input type="number" name="" id="age" class="w-full outline-none bg-none py-2 px-4  border-[#7165e1ce] border-2 rounded-3xl caret-[#0000ffa9] placeholder:text-sm" placeholder="Age" oninput="ValidateAge(this)" min="0">
+
+                            <div class="w-full text-orange-500 sm:text-xs text-[10px] text-center opacity-0" id="maxAge">Enter Valid Age <br> between 3 - 120</div>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-center"><button type="button" class="bg-[#7165e1] w-3/4 p-2 rounded-2xl text-white text-lg font-semibold opacity-30 pointer-events-none" id="calculateBtn">Calculate</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-11/12 max-w-[700px] bg-[#f3f6ff] h-auto fixed sm:p-4 p-3 rounded-2xl opacity-0 pointer-events-none transform transition-all duration-500 scale-50 hidden" id="resultContainer">
+            <div class="absolute top-4 right-3 hover:bg-[#e9eefd] px-2 py-1 rounded-full cursor-default" id="closeBtn">
+                <span class="material-symbols-outlined sm:text-4xl text-3xl">close</span>
+            </div>
+
+            <div class="sm:text-4xl text-3xl text-center mt-3 font-semibold text-slate-600">
+                <h1>Results</h1>
+            </div>
+
+            <div class="flex flex-col gap-3 w-full mt-5">
+                <div class="w-full h-auto sm:p-5 p-4 flex flex-col gap-5 items-center bg-white rounded-2xl">
+                    <h6 class="text-xl font-medium text-center">Your BMI is <span id="bmiRange" class="font-semibold text-[#7165e1] text-2xl ml-1">normal</span></h6>
+
+                    <h1 id="BmiValueNo" class="sm:text-8xl text-6xl text-[#7165e1] font-bold">22.4</h1>
+
+                    <p class="text-center sm:text-lg font-medium sm:w-4/5 w-full">The body mass index(BMI) is a value derived from the mass(weight) and height of an individual</p>
+
+                    <div class="sm:w-4/5 w-full">
+                        <div class="w-full flex gap-0.5 relative" id="progressBar">
+                            <div class="w-1/5 h-4 bg-gray-500 rounded-s-3xl"></div>
+                            <div class="w-1/5 h-4 bg-green-500"></div>
+                            <div class="w-1/5 h-4 bg-yellow-500"></div>
+                            <div class="w-1/5 h-4 bg-orange-500"></div>
+                            <div class="w-1/5 h-4 bg-red-500 rounded-e-3xl"></div>
+
+                            <div id="indicator" class="w-4 h-4 bg-none border-[3px] border-white rounded-full absolute left-2 top-1/2 transform ransform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 opacity-0"></div>
+                        </div>
+    
+                        <div class="w-full justify-evenly flex mt-1 text-sm text-gray-500">
+                            <span>18.5</span>
+                            <span>24.9</span>
+                            <span>29.9</span>
+                            <span>34.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full h-auto sm:p-5 p-4 bg-white rounded-2xl">
+                    <p class="font-medium text-lg">
+                        Based on your BMI, here are some suggestions:
+                    </p>
+
+                    <div class="w-full mt-5 flex flex-col gap-4">
+                        <div class="w-full flex gap-3 items-center">
+                                <span class="material-symbols-outlined text-2xl bg-[#0000ffa9] text-white p-1 sm:p-1.5 rounded-2xl" id="adviceIcn1"></span>
+                            <label for="height" class="sm:text-lg font-medium" id="adviceEat1"></label>
+                        </div>
+
+                        <div class="w-full flex gap-3 items-center">
+                            <span class="material-symbols-outlined text-2xl bg-yellow-500 text-white p-1 sm:p-1.5 rounded-2xl" id="adviceIcn2"></span>
+                            <label for="height" class="sm:text-lg font-medium" id="adviceEat2"></label>
+                        </div>
+
+                        <div class="w-full flex gap-3 items-center">
+                            <span class="material-symbols-outlined text-2xl bg-green-400 text-white p-1 sm:p-1.5 rounded-2xl" id="adviceIcn3"></span>
+                            <label for="height" class="sm:text-lg font-medium" id="adviceEat3"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
